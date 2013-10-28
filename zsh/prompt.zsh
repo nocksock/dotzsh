@@ -1,28 +1,27 @@
 autoload -U colors && colors
 
-for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
-    eval $COLOR='%{$fg_no_bold[${(L)COLOR}]%}'  #wrap colours between %{ %} to avoid weird gaps in autocomplete
-    eval BOLD_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
-done
-
 eval RESET='%{$reset_color%}'
-
-PROMPT='
-$fg[white]<%*> $fg[green]%n@%m$fg[white]:%~ $(git_prompt_string)${RESET}
-%(!.#.$) '
 
 function git_prompt_string() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
 	com=$(git rev-parse --short HEAD 2>/dev/null);
 
 	if [[ -n $(git status -s > /dev/null 2>&1 | tail -n1) ]]; then
-		STATUS_COLOR="red";
+		STATUS_COLOR="$FG[088]";
 	else
-		STATUS_COLOR="green";
+		STATUS_COLOR="$FG[235]";
 	fi;
 
-	echo "${fg[${STATUS_COLOR}]}${ref#refs/heads/}@${com}$fg[reset]";
+	echo "%{${STATUS_COLOR}%}${ref#refs/heads/}@${com}${RESET}";
 }
+
+local prim="%{$FG[039]%}"
+local white="%{$FG[007]%}"
+local dark="%{$FG[235]%}"
+
+PROMPT='
+${dark}%* ${prim}%n@%m:${dark}%~ $(git_prompt_string)${RESET}
+%(!.#.$) '
 
 # LS colors, made with http://geoff.greer.fm/lscolors/
 export LSCOLORS="Gxfxcxdxbxegedabagacad"

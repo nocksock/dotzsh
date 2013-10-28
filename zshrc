@@ -16,6 +16,7 @@ set -o vi
 
 bindkey -M vicmd '^R' history-incremental-search-backward
 
+source $HOME/.zsh/moar_colors.zsh
 source $HOME/.zsh/prompt.zsh
 source $HOME/.zsh/aliases.zsh
 
