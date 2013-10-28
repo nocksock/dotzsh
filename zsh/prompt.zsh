@@ -20,7 +20,7 @@ local white="%{$FG[007]%}"
 local dark="%{$FG[235]%}"
 
 PROMPT='
-${dark}%* ${prim}%n@%m:${dark}%~ $(git_prompt_string)${RESET}
+${dark}%* ${dark}%n@%m:${prim}%~ $(git_prompt_string)${RESET}
 %(!.#.$) '
 
 # LS colors, made with http://geoff.greer.fm/lscolors/
