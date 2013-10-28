@@ -7,33 +7,21 @@ done
 
 eval RESET='%{$reset_color%}'
 
-function git_prompt_info() {
+PROMPT='
+$fg[white]<%*> $fg[green]%n@%m$fg[white]:%~ $(git_prompt_string)${RESET}
+%(!.#.$) '
+
+function git_prompt_string() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(parse_git_dirty)±[${ref#refs/heads/}@$(git_prompt_short_sha)]$ZSH_THEME_GIT_PROMPT_SUFFIX"
-}
+	com=$(git rev-parse --short HEAD 2>/dev/null);
 
-function vi_mode_prompt_info() {
-  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
-}
+	if [[ -n $(git status -s > /dev/null 2>&1 | tail -n1) ]]; then
+		STATUS_COLOR="red";
+	else
+		STATUS_COLOR="green";
+	fi;
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_no_bold[yellow]%}%B"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_no_bold[green]%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}"
-
-PROMPT="
-$fg[white]<%*> $fg[green]%n@%m$fg[white]:%~ $(git_prompt_info)
-%(!.#.$) "
-
-MODE_INDICATOR="%{$fg[green]%}⌘ %{$reset_color%}"
-
-# Checks if working tree is dirty
-function parse_git_dirty() {
-  if [[ -n $(git status -s 2> /dev/null) ]]; then
-    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
-  else
-    echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-  fi
+	echo "${fg[${STATUS_COLOR}]}${ref#refs/heads/}@${com}$fg[reset]";
 }
 
 # LS colors, made with http://geoff.greer.fm/lscolors/

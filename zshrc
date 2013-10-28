@@ -1,18 +1,19 @@
+# Path to your oh-my-zsh configuration.
+export ZSH=$HOME/.oh-my-zsh
 autoload -U zmv
+bindkey -v # vi-mode
 
-# autocompletion
-autoload -U compinit && compinit
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+# OH-MY-ZSH
+export DISABLE_AUTO_UPDATE="true"
+export DISABLE_AUTO_TITLE="true"
+plugins=(noxoc git node npm cake osx)
+[[ -e $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
-setopt correctall
-
-# Customize to your needs...
 export EDITOR='vim'
 export PATH="$HOME/code/doctorjs/bin:/usr/local/share/python/:/package/host/localhost/vim-7.3/bin/:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH:$HOME/.npm/grunt/node_modules/.bin"
 export NODE_PATH='/usr/local/lib/jsctags:${NODE_PATH}'
-
 set -o vi
+
 bindkey -M vicmd '^R' history-incremental-search-backward
 
 source $HOME/.zsh/prompt.zsh
