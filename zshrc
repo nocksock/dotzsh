@@ -14,6 +14,7 @@ export PATH="$HOME/code/doctorjs/bin:/usr/local/share/python/:/package/host/loca
 export NODE_PATH='/usr/local/lib/jsctags:${NODE_PATH}'
 set -o vi
 
+bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M vicmd '^R' history-incremental-search-backward
 
 source $HOME/.zsh/moar_colors.zsh
