@@ -4,8 +4,9 @@ autoload -U zmv
 bindkey -v # vi-mode
 
 # OH-MY-ZSH
-export DISABLE_AUTO_UPDATE="true"
-export DISABLE_AUTO_TITLE="true"
+export DISABLE_AUTO_UPDATE=true
+export DISABLE_AUTO_TITLE=true
+
 plugins=(noxoc git node npm cake osx)
 [[ -e $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
@@ -30,3 +31,6 @@ source $HOME/.zsh/aliases.zsh
 
 # added by travis gem
 [ -f /Users/noxoc/.travis/travis.sh ] && source /Users/noxoc/.travis/travis.sh
+
+export CDPATH=".:$HOME:$HOME/code:$HOME/code/projects"
+export NODE_PATH=/usr/local/lib/jsctags:/usr/local/lib/jsctags:${NODE_PATH}:/usr/local/lib/node_modules:/usr/local/lib/node_modules
