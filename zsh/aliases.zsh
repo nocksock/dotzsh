@@ -5,4 +5,10 @@ alias -g L='| less'
 alias gn='python ~/src/geeknote/geeknote.py'
 alias d1='echo "" | vipe -c "set ft=markdown" | dayone new'
 alias vs='vim +VimShell'
-alias vim='/usr/local/Cellar/macvim/HEAD/MacVim.app/Contents/MacOS/Vim'
+alias chat='ssh pi@nxxxc.duckdns.org -p 1987 -t "tmux attach -t 0"'
+
+function tmn() {
+	tmux new -s ${PWD##*/}
+}
+
+alias dsend='open -a Transmit --hide --background'
