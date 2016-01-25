@@ -12,7 +12,7 @@ plugins=(noxoc git node npm cake osx)
 [[ -e $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
 export EDITOR='vim'
-export PATH="$HOME/code/doctorjs/bin:/usr/local/share/python/:/package/host/localhost/vim-7.3/bin/:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH:$HOME/.npm/grunt/node_modules:/.bin:/Users/noxoc/.gem/ruby/2.0.0/bin"
+export PATH="$HOME/.composer/vendor/bin:$HOME/code/doctorjs/bin:/usr/local/share/python/:/package/host/localhost/vim-7.3/bin/:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH:$HOME/.npm/grunt/node_modules:/.bin:/Users/noxoc/.gem/ruby/2.0.0/bin"
 export NODE_PATH='/usr/local/lib/jsctags:${NODE_PATH}'
 set -o vi
 

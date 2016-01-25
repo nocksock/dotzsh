@@ -5,7 +5,7 @@ alias -g L='| less'
 alias gn='python ~/src/geeknote/geeknote.py'
 alias d1='echo "" | vipe -c "set ft=markdown" | dayone new'
 alias vs='vim +VimShell'
-alias chat='ssh pi@nxxxc.duckdns.org -p 1987 -t "tmux attach -t 0"'
+alias chat='ssh riedeman@enif.uberspace.de -t "tmux attach -t 0"'
 
 function tmn() {
 	tmux new -s ${PWD##*/}
