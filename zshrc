@@ -37,3 +37,5 @@ source $HOME/.zsh/aliases.zsh
 export CDPATH=".:$HOME:$HOME/code:$HOME/code/projects"
 export NODE_PATH=/usr/local/lib/jsctags:/usr/local/lib/jsctags:${NODE_PATH}:/usr/local/lib/node_modules:/usr/local/lib/node_modules
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
