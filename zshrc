@@ -2,7 +2,7 @@
 export EDITOR='code'
 export ZSH_DISABLE_COMPFIX=true
 
-Setting locales 
+# Setting locales 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
