@@ -1,16 +1,44 @@
-alias -g G='| grep'
+# Enable aliases to be sudo’ed
+#    http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
+alias sudo='sudo 'alias -g G='| grep'
+
 alias -g L='| less'
-alias gss="git status -s"
-alias ll='ls -la'
+alias ..='cd ..'
+
+# Avoid rm mistakes  with trash-cli:
+# 	https://github.com/sindresorhus/trash-cli
+if type trash &>/dev/null; then
+	alias rm='trash' # move to trash instead of delete
+else
+	alias rm='rm -i' # rm -i will ask for each deletion
+fi
+
+# ls 
+alias ll='ls -laF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# tmux
 alias tat='tmux -u attach -t'
-alias chat='ssh riedeman@enif.uberspace.de -t "tmux attach -t 0"'
 alias tmux="TERM=screen-256color-bce tmux"
+
+# git
+alias gss='git status -s'
+alias gc="git checkout"
+
+alias o='open'
+alias oo='open .'
+
+alias q='cd ~ && clear'
+
+# gr: git roo; move to root of current rep
+alias gr='git rev-parse 2>/dev/null && cd "./$(git rev-parse --show-cdup)"'
 
 function tmn() {
 	tmux -u new -s ${PWD##*/}
 }
 
-function git-grouped-log () {
+function git-grouped-log () { # {{{
   while read -r -u 9 since name
   do
     until=$(date -j -v+1d -f '%Y-%m-%d' $since +%Y-%m-%d)
@@ -27,19 +55,17 @@ function git-grouped-log () {
 
     echo
   done 9< <(git log --no-merges --format=$'%cd %cn' --date=short | sort --unique --reverse)
-}
-
-# fbr - checkout git branch (including remote branches)
+} # }}}
+# gbr: git branches fuzzy finder {{{
 gbr() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-# fshow - git commit browser
-gshow() {
+} # }}}
+# git show fuzzy filter {{{
+gshow() { 
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
@@ -48,21 +74,8 @@ gshow() {
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
 FZF-EOF"
-}
-
-# fs [FUZZY PATTERN] - Select selected tmux session
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-ts() {
-  local session
-  session=$(tmux list-sessions -F "#{session_name}" | \
-    fzf --query="$1" --select-1 --exit-0) &&
-  tmux switch-client -t "$session"
-}
-
-
-# Generates git changelog grouped by day
-#
+} # }}}
+# git-log-by-day: Generates git changelog grouped by day {{{
 # optional parameters
 # -a, --author       to filter by author
 # -s, --since        to select start date
@@ -122,9 +135,17 @@ git-log-by-day () {
     fi
 
   done
-}
-
-# fh - repeat history
+}# }}}
+# ts [FUZZY PATTERN] - Select selected tmux session{{{
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+ts() {
+  local session
+  session=$(tmux list-sessions -F "#{session_name}" | \
+    fzf --query="$1" --select-1 --exit-0) &&
+  tmux switch-client -t "$session"
+}# }}}
+# fh - repeat history {{{
 function fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
-}
+} # }}}
