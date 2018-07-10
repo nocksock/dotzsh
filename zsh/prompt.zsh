@@ -7,20 +7,20 @@ function git_prompt_string() {
 	com=$(git rev-parse --short HEAD 2>/dev/null);
 
 	if [[ -n $(git status -s > /dev/null 2>&1 | tail -n1) ]]; then
-		STATUS_COLOR="$FG[088]";
+		STATUS_COLOR="$FG[204]";
 	else
-		STATUS_COLOR="$FG[235]";
+		STATUS_COLOR="$FG[007]";
 	fi;
 
 	echo "%{${STATUS_COLOR}%}${ref#refs/heads/}@${com}${RESET}";
 }
 
-local prim="%{$FG[039]%}"
+local prim="%{$FG[221]%}"
 local white="%{$FG[007]%}"
 local dark="%{$FG[235]%}"
 
 PROMPT='
-${dark}%* ${dark}%n@%m:${prim}%~ $(git_prompt_string)${RESET}
+${prim}%* ${white}%n@%m:${prim}%~ $(git_prompt_string)${RESET}
 %(!.#.$) '
 
 # LS colors, made with http://geoff.greer.fm/lscolors/
