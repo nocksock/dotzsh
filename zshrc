@@ -1,5 +1,5 @@
 #!/bin/zsh
-export EDITOR='code'
+export EDITOR='vim' # used for commits and such
 export ZSH_DISABLE_COMPFIX=true
 
 # Setting locales 
@@ -26,5 +26,9 @@ set -o vi
 autoload -U promptinit; promptinit
 PURE_CMD_MAX_EXEC_TIME=10
 prompt pure
+
+# Autocomplete
+autoload -Uz compinit
+compinit
 
 bindkey -M viins '^R' fh

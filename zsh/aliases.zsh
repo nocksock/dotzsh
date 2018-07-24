@@ -31,6 +31,11 @@ alias oo='open .'
 
 alias q='cd ~ && clear'
 
+function take() {
+	mkdir $1
+	cd $1
+}
+
 # gr: git roo; move to root of current rep
 alias gr='git rev-parse 2>/dev/null && cd "./$(git rev-parse --show-cdup)"'
 
@@ -149,3 +154,4 @@ ts() {
 function fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 } # }}}
+
