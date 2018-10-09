@@ -1,6 +1,7 @@
 # Enable aliases to be sudo’ed
 #    http://askubuntu.com/questions/22037/aliases-not-available-when-using-sudo
-alias sudo='sudo 'alias -g G='| grep'
+alias sudo='sudo '
+alias -g G='| grep'
 
 alias -g L='| less'
 alias ..='cd ..'
