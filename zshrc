@@ -39,6 +39,7 @@ export DOOMDIR="$HOME/emacs-doom-config/"
 
 # Disabled in favor of starship 
 # [ -f ~/.zsh/pure-prompt.zsh ] && source ~/.zsh/pure-prompt.zsh
+export STARSHIP_CONFIG=~/.zsh/starship.toml
 
 ##############################################################################
 # History Configuration
