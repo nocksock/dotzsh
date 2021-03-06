@@ -12,7 +12,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/git/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/emacs-doom/bin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -23,6 +23,8 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 export DENO_INSTALL="/Users/riedemann/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export CDPATH=".:$HOME:$HOME/development:$HOME/development/projects"
+
+export DOOMDIR="$HOME/emacs-doom-config/"
 
 # ulimit -n 1000            # Setting resource limit , disabled because I forgot what it does.
 # set -o vi                 # Use VI bindings, disabled because it's weird to use within emacs.
