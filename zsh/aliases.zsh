@@ -25,8 +25,6 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 # git
 alias gss='git status -s'
-alias gc="git checkout"
-
 alias o='open'
 alias oo='open .'
 
@@ -70,6 +68,7 @@ gbr() {
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 } # }}}
+
 # git show fuzzy filter {{{
 gshow() { 
   git log --graph --color=always \
@@ -81,12 +80,12 @@ gshow() {
                 {}
 FZF-EOF"
 } # }}}
+
 # git-log-by-day: Generates git changelog grouped by day {{{
 # optional parameters
 # -a, --author       to filter by author
 # -s, --since        to select start date
 # -u, --until        to select end date
-
 git-log-by-day () {
   local NEXT=$(date +%F)
 
@@ -143,6 +142,7 @@ git-log-by-day () {
   done
 }
 # }}}
+
 # ts [FUZZY PATTERN] - Select selected tmux session{{{
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)

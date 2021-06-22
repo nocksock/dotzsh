@@ -14,6 +14,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/emacs-doom/bin:$PATH"
 export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
@@ -24,15 +25,17 @@ export DENO_INSTALL="/Users/riedemann/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export CDPATH=".:$HOME:$HOME/development:$HOME/development/projects"
 
-export DOOMDIR="$HOME/emacs-doom-config/"
+# export DOOMDIR="$HOME/emacs-doom-config/"
+
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # ulimit -n 1000            # Setting resource limit , disabled because I forgot what it does.
 # set -o vi                 # Use VI bindings, disabled because it's weird to use within emacs.
 
 #
 # Plugins
-# #
-[ -f ~/.zsh/always-tmux.zsh ] && source ~/.zsh/always-tmux.zsh
+# 
+# [ -f ~/.zsh/always-tmux.zsh ] && source ~/.zsh/always-tmux.zsh
 [ -f ~/.zsh/aliases.zsh ] && source ~/.zsh/aliases.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zsh/auto-nvm.zsh ] && source ~/.zsh/auto-nvm.zsh
@@ -52,4 +55,7 @@ setopt    appendhistory     # Append history to the history file (no overwriting
 setopt    sharehistory      # Share history across terminals
 setopt    incappendhistory  # Immediately append to the history file, not just when a term is killed
 
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 eval "$(starship init zsh)" # Start star ship
+eval "$(pyenv init -)"
